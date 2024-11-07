@@ -5,4 +5,5 @@ add_executable(
     psim
     src/main.c
     src/cmd.c
+    src/cli.c
 )
