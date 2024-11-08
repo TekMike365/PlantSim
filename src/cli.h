@@ -7,7 +7,7 @@
 #define CLI_INPUT_READ_ERR 1
 
 const char* cli_error_msg(int err);
-int cli_init(int cmdc, struct Cmd* cmdv);
+int cli_init(int cmdc, const struct Cmd* cmdv);
 int cli_run();
 
 #endif

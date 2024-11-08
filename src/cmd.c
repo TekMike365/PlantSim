@@ -3,8 +3,8 @@
 #include <string.h>
 #include <stdio.h>
 
-int cmdc = 0;
-struct Cmd* cmdv = 0;
+static int cmdc = 0;
+static const struct Cmd* cmdv = 0;
 
 const char* cmd_error_msg(int err) {
     switch(err)
@@ -25,7 +25,7 @@ int cmd_compare(const char* alias, struct Cmd cmd) {
     return 0;
 }
 
-void cmd_set_cmdv(int c, struct Cmd* v) {
+void cmd_set_cmdv(int c, const struct Cmd* v) {
     cmdc = c;
     cmdv = v;
 }

@@ -12,7 +12,7 @@ struct Cmd {
 };
 
 const char* cmd_error_msg(int err);
-void cmd_set_cmdv(int c, struct Cmd* v);
+void cmd_set_cmdv(int c, const struct Cmd* v);
 int cmd_dispatch(const char* alias,  int argc, const char** argv);
 
 #endif

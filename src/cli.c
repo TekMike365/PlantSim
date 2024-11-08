@@ -11,7 +11,7 @@ const char* cli_error_msg(int err) {
     return "Unknown error.";
 }
 
-int cli_init(int cmdc, struct Cmd* cmdv) {
+int cli_init(int cmdc, const struct Cmd* cmdv) {
     cmd_set_cmdv(cmdc, cmdv);
     return CLI_OK;
 }
