@@ -3,14 +3,17 @@
 #include <stdio.h>
 #include <string.h>
 
-#include "cmd.h"
-
 const char* cli_error_msg(int err) {
     switch (err) {
     case CLI_OK: return "OK.";
     case CLI_INPUT_READ_ERR: return "Couldn't read from stdin.";
     }
     return "Unknown error.";
+}
+
+int cli_init(int cmdc, struct Cmd* cmdv) {
+    cmd_set_cmdv(cmdc, cmdv);
+    return CLI_OK;
 }
 
 int cli_run() {

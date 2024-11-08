@@ -3,29 +3,8 @@
 #include <string.h>
 #include <stdio.h>
 
-#define CREATE_ALIASES(x, c, ...)\
-const char* aliasv_ ## x[] = {__VA_ARGS__};\
-const int aliasc_ ## x = c;
-
-struct Cmd {
-    int aliasc;
-    const char** aliasv;
-    int (*exec)(int argc, const char** argv);
-};
-
-CREATE_ALIASES(test, 1, "test")
-int exec_test(int argc, const char** argv) {
-    printf("test command\n");
-    printf("args: %d\n", argc);
-    for (int i = 0; i < argc; ++i)
-        printf("%d: %s\n", i + 1, argv[i]);
-    return CMD_TEST_ERROR;
-}
-
-const int cmdc = 1;
-const struct Cmd cmdv[] = {
-    { aliasc_test, aliasv_test, exec_test }
-};
+int cmdc = 0;
+struct Cmd* cmdv = 0;
 
 const char* cmd_error_msg(int err) {
     switch(err)
@@ -44,6 +23,11 @@ int cmd_compare(const char* alias, struct Cmd cmd) {
     }
 
     return 0;
+}
+
+void cmd_set_cmdv(int c, struct Cmd* v) {
+    cmdc = c;
+    cmdv = v;
 }
 
 int cmd_dispatch(const char* alias, int argc, const char** argv) {
